@@ -1,0 +1,15 @@
+
+type Category {
+  id: ID! @id
+  name: String! @unique
+  createdAt: DateTime! @createdAt
+  blogposts: [BlogPost]
+}
+
+type BlogPost {
+  id: ID! @id
+  name: String! @unique
+  description: String!
+  createdAt: DateTime! @createdAt
+  categories: [Category!]!
+}

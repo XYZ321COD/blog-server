@@ -1,0 +1,63 @@
+scalar DateTime
+
+type Query {
+  info: String!
+  feed(filter: String, skip: Int, first: Int, orderBy: CategoryOrderByInput): Feed!
+  feed2(filter: String, skip: Int, first: Int, orderBy: CategoryOrderByInput): Feed2!
+  feed3(filter: String): Feed3!
+  feed4(filter: String, skip: Int, first: Int, orderBy: CategoryOrderByInput): Feed4!
+}
+
+type Category {
+    id: ID!
+    name: String!
+    createdAt: DateTime!
+    blogposts: [BlogPost]
+
+}
+
+type BlogPost {
+    id: ID!
+    name: String!
+    description: String!
+    createdAt: DateTime!
+    categories: [Category!]!
+}
+
+type Feed {
+    categories: [Category!]
+    count: Int!
+}
+
+type Feed2 {
+    blogposts: [BlogPost!]
+    count: Int!
+
+}
+
+type Feed3 {
+     blogpost: [BlogPost!]
+    count: Int!
+}
+
+type Feed4 {
+    blogposts: [BlogPost!]
+    count: Int!
+}
+
+
+type Mutation {
+     create_Category(name: String!): Category!
+     create_Post(name: String!, category: String!): BlogPost!
+}
+
+enum CategoryOrderByInput {
+    description_ASC
+    description_DESC
+     url_ASC
+     url_DESC
+     createdAt_ASC
+    createdAt_DESC
+}
+
+
